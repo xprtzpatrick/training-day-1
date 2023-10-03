@@ -33,32 +33,6 @@ public class BlogRepository : IBlogRepository
         return result?.ToDomain() ?? Enumerable.Empty<Post>();
     }
 
-    public async Task<Post?> GetPostByIdAsync(int id, bool includeComments = false)
-    {
-        // Fake delay (slow API)
-        await Task.Delay(2000);
-
-        var result = await _httpClient.GetFromJsonAsync<PostApiModel>($"posts/{id}", GetSerializerOptions());
-
-        if (result == null)
-            return null;
-        
-        if (includeComments)
-        {
-            var comments = await _httpClient.GetFromJsonAsync<IEnumerable<CommentApiModel>>($"posts/{id}/comments", GetSerializerOptions());
-            result.Comments = comments ?? Enumerable.Empty<CommentApiModel>();
-        }
-
-        return result.ToDomain();
-    }
-
-    public async Task<IEnumerable<Comment>> GetCommentsByPostIdAsync(int postId)
-    {
-        var result = await _httpClient.GetFromJsonAsync<IEnumerable<CommentApiModel>>($"posts/{postId}/comments", GetSerializerOptions());
-
-        return result?.ToDomain() ?? Enumerable.Empty<Comment>();
-    }
-
     public async Task<IEnumerable<Comment>> GetAllComments()
     {
         var result = await _httpClient.GetFromJsonAsync<IEnumerable<CommentApiModel>>("comments", GetSerializerOptions());
