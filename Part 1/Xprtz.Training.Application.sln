@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xprtz.Training.Application", "src\Xprtz.Training.Application\Xprtz.Training.Application.csproj", "{6E2911C1-72E5-4688-B866-604B11E4D22D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xprtz.Training.Domain", "src\Xprtz.Training.Domain\Xprtz.Training.Domain.csproj", "{FE3E5D5C-8C6A-4949-863C-EB719BA26415}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xprtz.Training.Infra.BlogApi", "src\Xprtz.Training.Infra.BlogApi\Xprtz.Training.Infra.BlogApi.csproj", "{CDBC7A3F-168B-42C3-813C-0507F0C77FFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E2911C1-72E5-4688-B866-604B11E4D22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E2911C1-72E5-4688-B866-604B11E4D22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E2911C1-72E5-4688-B866-604B11E4D22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E2911C1-72E5-4688-B866-604B11E4D22D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE3E5D5C-8C6A-4949-863C-EB719BA26415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE3E5D5C-8C6A-4949-863C-EB719BA26415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE3E5D5C-8C6A-4949-863C-EB719BA26415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE3E5D5C-8C6A-4949-863C-EB719BA26415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDBC7A3F-168B-42C3-813C-0507F0C77FFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDBC7A3F-168B-42C3-813C-0507F0C77FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDBC7A3F-168B-42C3-813C-0507F0C77FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDBC7A3F-168B-42C3-813C-0507F0C77FFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
