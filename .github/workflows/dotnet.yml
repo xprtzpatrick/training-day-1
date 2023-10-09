@@ -26,10 +26,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore 'Day 2/Part 1/Xprtz.Training.Application.sln'
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build 'Day 2/Part 1/Xprtz.Training.Application.sln' --no-restore 
     - name: Test
       run: dotnet test 'Day 2/**' --no-build --verbosity normal
