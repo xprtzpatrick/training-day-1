@@ -32,4 +32,4 @@ jobs:
     - name: Build
       run: dotnet build 'Day 2/Part 1/Xprtz.Training.Application.sln' --no-restore 
     - name: Test
-      run: dotnet test 'Day 2/tests/*Test*/*.csproj' --no-build --verbosity normal
+      run: dotnet test 'Day 2/Part 1/tests/**/*.csproj' --no-build --verbosity normal
