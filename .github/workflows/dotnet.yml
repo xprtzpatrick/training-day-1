@@ -10,7 +10,12 @@ on:
   pull_request:
     branches: [ "main" ]
     paths: ['Day 2/**']
-
+  workflow_dispatch: # This allows manual triggering
+    inputs:
+      trigger-manual:
+        description: 'Manually trigger the workflow'
+        required: false
+        
 jobs:
   build:
 
