@@ -12,7 +12,7 @@ public class TestApplicationFactory<TProgram> : WebApplicationFactory<TProgram>
 {
     public readonly Mock<ICacheRepository> CacheRepositoryMock = new();
     public readonly Mock<IBlogRepository> BlogRepositoryMock = new();
-    
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureTestServices(services =>
@@ -27,7 +27,7 @@ public class TestApplicationFactory<TProgram> : WebApplicationFactory<TProgram>
             services.Remove(cacheRepository);
             services.AddScoped<ICacheRepository>(x => CacheRepositoryMock.Object);
         });
-        
+
         base.ConfigureWebHost(builder);
     }
 }

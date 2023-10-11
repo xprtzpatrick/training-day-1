@@ -12,20 +12,20 @@ public class BlogServiceTests
     {
         // Arrange
         var service = GetBlogService();
-        
+
         service.CacheRepositoryMock
             .Setup(x => x.GetLastCacheUpdateTimeAsync())
             .ReturnsAsync(DateTimeOffset.Now);
-        
+
         // Act
         await service.BlogService.GetPostsAsync();
-        
+
         // Assert
         service.CacheRepositoryMock.Verify(x => x.DeletePostsAndCommentsAsync(), Times.Never);
         service.CacheRepositoryMock.Verify(x => x.InsertPostsAsync(It.IsAny<IEnumerable<Post>>()), Times.Never);
         service.CacheRepositoryMock.Verify(x => x.InsertCommentsAsync(It.IsAny<IEnumerable<Comment>>()), Times.Never);
     }
-    
+
     [Theory]
     [InlineData(null)]
     [InlineData(30)]
@@ -33,18 +33,18 @@ public class BlogServiceTests
     {
         // Arrange
         var service = GetBlogService();
-        
+
         DateTimeOffset? returnValue = daysOldCache == null
             ? null
             : DateTimeOffset.Now - TimeSpan.FromDays(daysOldCache.Value);
-        
+
         service.CacheRepositoryMock
             .Setup(x => x.GetLastCacheUpdateTimeAsync())
             .ReturnsAsync(returnValue);
-        
+
         // Act
         await service.BlogService.GetPostsAsync();
-        
+
         // Assert
         service.CacheRepositoryMock.Verify(x => x.DeletePostsAndCommentsAsync(), Times.Once);
         service.CacheRepositoryMock.Verify(x => x.InsertPostsAsync(It.IsAny<IEnumerable<Post>>()), Times.Once);
