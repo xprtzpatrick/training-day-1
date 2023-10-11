@@ -1,20 +1,21 @@
 ﻿using System.Text.Json;
 using Azure.Messaging.ServiceBus;
 using Xprtz.Training.MicroServices.Api.Controllers;
-using Xprtz.Training.MicroServices.Models;
+using Xprtz.Training.MicroServices.Domain.Interfaces;
+using Xprtz.Training.MicroServices.Domain.Models;
 
 namespace Xprtz.Training.MicroServices.Api;
 
 public class ServiceBusService : IHostedService
 {
-    private string _owner;
+    private readonly IChatService _chatService;
     private ServiceBusProcessor _processor;
 
-    public ServiceBusService(IConfiguration configuration)
+    public ServiceBusService(IConfiguration configuration, IChatService chatService)
     {
+        _chatService = chatService;
         var connectionString = configuration.GetConnectionString("ServiceBus") ??
                                throw new Exception("Could not start servicebus, missing connectionstring?");
-        _owner = configuration.GetSection("ServiceBus")["owner"] ?? throw new Exception("No owner set!");
 
         var clientOptions = new ServiceBusClientOptions
         {
@@ -55,24 +56,18 @@ public class ServiceBusService : IHostedService
         await args.CompleteMessageAsync(args.Message);
     }
 
-    private bool HandleMessage(ServiceBusReceivedMessage message)
+    private void HandleMessage(ServiceBusReceivedMessage message)
     {
-        // We leave this message alone if it's not ours
-        if ((string)message.ApplicationProperties["owner"] != _owner)
-            return false;
-
         var chatMessage = JsonSerializer.Deserialize<ChatMessage>(message.Body.ToString());
         if (chatMessage == null)
             throw new Exception("Body could not be decoded into a chatmessage model!");
+        
+        if (!message.ApplicationProperties.ContainsKey("owner"))
+            throw new Exception("Message does not contain an owner!");
 
-        if (chatMessage.Message == "clear")
-        {
-            ApiController.Messages.Clear();
-            return true;
-        }
-
-        ApiController.Messages.Add(chatMessage.Message);
-        return true;
+        var owner = (string) message.ApplicationProperties["owner"];
+        
+        _chatService.HandleChatMessage(ApiController.Messages, chatMessage.Message, owner);
     }
 
     Task ErrorHandler(ProcessErrorEventArgs args)

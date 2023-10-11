@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using Azure.Messaging.ServiceBus;
-using Xprtz.Training.MicroServices.Models;
+using Xprtz.Training.MicroServices.Domain.Models;
 
 ServiceBusClient client;
 ServiceBusSender sender;
