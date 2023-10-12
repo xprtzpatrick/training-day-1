@@ -28,10 +28,10 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
-      run: dotnet restore 'Day 2/Part 1/Xprtz.Training.Application.sln'
+      run: dotnet restore 'Day 2/Part 2 - Tests/Xprtz.Training.Application.sln'
     - name: Build
-      run: dotnet build 'Day 2/Part 1/Xprtz.Training.Application.sln' --no-restore 
+      run: dotnet build 'Day 2/Part 2 - Tests/Xprtz.Training.Application.sln' --no-restore 
     - name: Unit Tests
-      run: dotnet test 'Day 2/Part 1/tests/Xprtz.Training.UnitTests/Xprtz.Training.UnitTests.csproj' --no-build --verbosity normal
+      run: dotnet test 'Day 2/Part 2 - Tests/tests/Xprtz.Training.UnitTests/Xprtz.Training.UnitTests.csproj' --no-build --verbosity normal
     - name: Integration Tests
-      run: dotnet test 'Day 2/Part 1/tests/Xprtz.Training.IntegrationTests/Xprtz.Training.IntegrationTests.csproj' --no-build --verbosity normal
+      run: dotnet test 'Day 2/Part 2 - Tests/tests/Xprtz.Training.IntegrationTests/Xprtz.Training.IntegrationTests.csproj' --no-build --verbosity normal
