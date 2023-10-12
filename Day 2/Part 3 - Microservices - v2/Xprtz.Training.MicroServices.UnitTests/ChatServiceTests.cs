@@ -81,9 +81,6 @@ public class ChatServiceTests
     
     private ChatService GetChatServiceWithOwner(string owner = "owner")
     {
-        return new ChatService(new ChatServiceConfig
-        {
-            Owner = owner
-        });
+        return new ChatService(new ChatServiceConfig(owner));
     }
 }
