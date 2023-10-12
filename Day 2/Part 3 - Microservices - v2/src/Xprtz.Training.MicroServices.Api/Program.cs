@@ -15,8 +15,10 @@ builder.Services.AddHostedService<ServiceBusService>();
 builder.Services.AddSingleton<IChatService, ChatService>();
 builder.Services.AddSingleton<ChatServiceConfig>(_ =>
 {
-    var config = new ChatServiceConfig();
-    builder.Configuration.Bind("ChatServiceConfig", config);
+    var config = builder.Configuration.GetSection("ChatServiceConfig").Get<ChatServiceConfig>();
+    if (config == null)
+        throw new Exception("Could not bind service config!");
+    
     return config;
 });
 
