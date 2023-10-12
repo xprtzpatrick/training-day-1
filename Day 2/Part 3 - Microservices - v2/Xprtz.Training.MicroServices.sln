@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xprtz.Training.MicroService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xprtz.Training.MicroServices.Domain", "src\Xprtz.Training.MicroServices.Domain\Xprtz.Training.MicroServices.Domain.csproj", "{427A7D82-08E0-412F-8BD3-A8DBA89B74BB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F2821850-310C-43CA-9485-7FE6C907FC49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xprtz.Training.MicroServices.UnitTests", "Xprtz.Training.MicroServices.UnitTests\Xprtz.Training.MicroServices.UnitTests.csproj", "{859C52FD-9997-4380-A81D-061D102B6CFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,12 @@ Global
 		{427A7D82-08E0-412F-8BD3-A8DBA89B74BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{427A7D82-08E0-412F-8BD3-A8DBA89B74BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{427A7D82-08E0-412F-8BD3-A8DBA89B74BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{859C52FD-9997-4380-A81D-061D102B6CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{859C52FD-9997-4380-A81D-061D102B6CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{859C52FD-9997-4380-A81D-061D102B6CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{859C52FD-9997-4380-A81D-061D102B6CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{859C52FD-9997-4380-A81D-061D102B6CFE} = {F2821850-310C-43CA-9485-7FE6C907FC49}
 	EndGlobalSection
 EndGlobal

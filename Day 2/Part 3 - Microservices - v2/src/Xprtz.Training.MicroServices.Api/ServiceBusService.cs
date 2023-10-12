@@ -61,13 +61,11 @@ public class ServiceBusService : IHostedService
         var chatMessage = JsonSerializer.Deserialize<ChatMessage>(message.Body.ToString());
         if (chatMessage == null)
             throw new Exception("Body could not be decoded into a chatmessage model!");
-        
-        if (!message.ApplicationProperties.ContainsKey("owner"))
-            throw new Exception("Message does not contain an owner!");
 
-        var owner = (string) message.ApplicationProperties["owner"];
+        if (!_chatService.ShouldHandleMessage(message.ApplicationProperties))
+            return;
         
-        _chatService.HandleChatMessage(ApiController.Messages, chatMessage.Message, owner);
+        _chatService.HandleChatMessage(ApiController.Messages, chatMessage.Message);
     }
 
     Task ErrorHandler(ProcessErrorEventArgs args)

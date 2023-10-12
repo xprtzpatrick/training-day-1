@@ -6,18 +6,15 @@ namespace Xprtz.Training.MicroServices.Domain;
 public class ChatService : IChatService
 {
     private readonly ChatServiceConfig _config;
+    public const string OwnerKey = "owner";
 
     public ChatService(ChatServiceConfig config)
     {
         _config = config;
     }
     
-    public void HandleChatMessage(List<string> currentMessages, string message, string owner)
+    public void HandleChatMessage(List<string> currentMessages, string message)
     {
-        // We leave this message alone if it's not ours
-        if (_config.Owner != owner)
-            return;
-
         if (message == "clear")
         {
             currentMessages.Clear();
@@ -25,5 +22,13 @@ public class ChatService : IChatService
         }
 
         currentMessages.Add(message);
+    }
+
+    public bool ShouldHandleMessage(IReadOnlyDictionary<string, object> messageProperties)
+    {
+        if (!messageProperties.ContainsKey(OwnerKey))
+            return false;
+
+        return (string)messageProperties[OwnerKey] == _config.Owner;
     }
 }

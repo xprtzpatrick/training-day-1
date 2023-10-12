@@ -2,5 +2,7 @@
 
 public interface IChatService
 {
-    void HandleChatMessage(List<string> currentMessages, string message, string owner);
+    void HandleChatMessage(List<string> currentMessages, string message);
+    
+    bool ShouldHandleMessage(IReadOnlyDictionary<string, object> messageProperties);
 }
